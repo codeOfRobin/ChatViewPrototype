@@ -18,42 +18,24 @@ class ViewController: UIViewController {
 	let textInputBar = TextBarNode()
 	
 	let backgroundNode = ASDisplayNode { () -> UIView in
-		let effect = UIBlurEffect(style: .light)
+		let effect = UIBlurEffect(style: .extraLight)
 		let visualEffectView = UIVisualEffectView(effect: effect)
-		
-		// 1
-		let vibrancyEffect = UIVibrancyEffect(blurEffect: effect)
-		// 2
-		let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
-		vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		// 3
-		
-		let red = UIView()
-		red.backgroundColor = UIColor.red
-		red.frame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-		
-		vibrancyView.contentView.addSubview(red)
-		
-		// 4
-		visualEffectView.contentView.addSubview(vibrancyView)
-		
 		return visualEffectView
 	}
 
+	let textInputNode = TextBarNode()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubnode(node)
 		
 		node.addSubnode(tableNode)
-//		view.addSubnode(textInputBar)
 		view.addSubnode(backgroundNode)
 		textInputBar.textNode.maximumLinesToDisplay = 5
 	
 		
 		backgroundNode.style.width = ASDimensionMakeWithFraction(1.0)
 		backgroundNode.style.height = ASDimensionMake(44)
-//		textInputBar.textNode.attributedPlaceholderText = NSAttributedString(string: "Reply here")
 		
 		tableNode.style.preferredSize = CGSize(width: 300, height: 300)
 		tableNode.style.width = ASDimensionMakeWithFraction(1.0)
@@ -62,13 +44,18 @@ class ViewController: UIViewController {
 			
 			let stack = ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .center, alignItems: .stretch, children: [self.tableNode])
 			
-			let relativeSpec = ASRelativeLayoutSpec(horizontalPosition: .center, verticalPosition: .end, sizingOption: [], child: self.backgroundNode)
+			let overlaySpec = ASOverlayLayoutSpec(child: self.backgroundNode, overlay: self.textInputNode)
+			
+			let relativeSpec = ASRelativeLayoutSpec(horizontalPosition: .center, verticalPosition: .end, sizingOption: [], child: overlaySpec)
 			
 			let backgroundSpec = ASBackgroundLayoutSpec(child: relativeSpec, background: stack)
 			
 			return backgroundSpec
 		}
 		
+		
+//		(backgroundNode.view as? UIVisualEffectView)?.contentView.addSubnode(textInputNode)
+		view.addSubnode(textInputNode)
 		
 		tableNode.dataSource = manager
 		tableNode.delegate = manager
