@@ -1,0 +1,6 @@
+framework module Pods_ChatViewPrototypeTests {
+  umbrella header "Pods-ChatViewPrototypeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
