@@ -9,7 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MyCustomViewDelegate {
 
 	let node = ASDisplayNode()
 	let tableNode = ASTableNode()
@@ -67,5 +67,15 @@ class ViewController: UIViewController {
 
 	override func viewDidLayoutSubviews() {
 		node.frame = view.frame
+	}
+	
+	override var inputAccessoryView: UIView? {
+		let custom = MyCustomView(frame: .zero)
+		custom.delegate = self
+		return custom
+	}
+	
+	func centerChanged(center: CGPoint) {
+		print(center)
 	}
 }
