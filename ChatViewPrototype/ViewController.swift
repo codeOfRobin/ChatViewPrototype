@@ -92,7 +92,5 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	func frameChanged(frame: CGRect) {
 		node.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: frame.origin.y)
 		node.layout()
-		backgroundNode.frame = CGRect(x: 0, y: frame.origin.y - 44, width: backgroundNode.frame.width, height: 44)
-
 	}
 }
