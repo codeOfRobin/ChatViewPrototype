@@ -15,13 +15,6 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	let tableNode = ASTableNode()
 	let manager = ChatTableManager()
 	
-	let textInputBar = TextBarNode()
-	
-	let backgroundNode = ASDisplayNode { () -> UIView in
-		let effect = UIBlurEffect(style: .extraLight)
-		let visualEffectView = UIVisualEffectView(effect: effect)
-		return visualEffectView
-	}
 	
 	var height = CGFloat(44)
 	
@@ -53,11 +46,7 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		let time = DispatchTime.now() + .seconds(4)
 		DispatchQueue.main.asyncAfter(deadline: time) { 
 			self.height *= 3
-			
-			self.resignFirstResponder()
 			self.reloadInputViews()
-			self.becomeFirstResponder()
-			
 		}
 	}
 	
@@ -69,22 +58,28 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 
 	override func viewDidLayoutSubviews() {
 		node.frame = view.frame
-		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
-			return
-		}
-		textInputBar.frame = blurView.bounds
 	}
 	
 	override var inputAccessoryView: UIView? {
+		
+		let backgroundNode = ASDisplayNode { () -> UIView in
+			let effect = UIBlurEffect(style: .extraLight)
+			let visualEffectView = UIVisualEffectView(effect: effect)
+			return visualEffectView
+		}
+		
 		
 		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
 			return nil
 		}
 		
+		let textInputBar = TextBarNode()
+		
 		backgroundNode.frame.size = CGSize(width: view.frame.width, height: height)
 		print(backgroundNode.frame)
 		blurView.contentView.addSubnode(textInputBar)
 		
+		textInputBar.frame = blurView.bounds
 		return backgroundNode.view
 	}
 	
