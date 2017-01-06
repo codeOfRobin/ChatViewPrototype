@@ -63,6 +63,14 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		
 		tableNode.view.keyboardDismissMode = .interactive
 		
+		
+		NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: OperationQueue.main) { (notification) in
+			print(notification.userInfo)
+//			node.frame = CGRect(x: 0, y: 0, width: node.frame.width, height: )
+//			let lastRow = IndexPath(row: self.tableNode.numberOfRows(inSection: 0) - 1, section: 0)
+//			self.tableNode.scrollToRow(at: lastRow, at: .top, animated: true)
+
+		}
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -70,12 +78,21 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	}
 	
 	override var inputAccessoryView: UIView? {
-		let custom = MyCustomView(frame: .zero)
+		let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+		let custom = MyCustomView(frame: frame)
+		custom.backgroundColor = .red
 		custom.delegate = self
 		return custom
 	}
 	
 	func centerChanged(center: CGPoint) {
-		print(center)
+//		print(center)
+	}
+	
+	func frameChanged(frame: CGRect) {
+		node.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: frame.origin.y)
+		node.layout()
+		backgroundNode.frame = CGRect(x: 0, y: frame.origin.y - 44, width: backgroundNode.frame.width, height: 44)
+
 	}
 }

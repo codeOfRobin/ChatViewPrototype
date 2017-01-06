@@ -20,8 +20,8 @@ class TextBarNode: ASDisplayNode {
 		self.addSubnode(textNode)
 		self.addSubnode(sendButton)
 		
-		sendButton.setAttributedTitle(NSAttributedString(string: "something"), for: [])
-		textNode.attributedPlaceholderText = NSAttributedString(string: "something")
+		sendButton.setAttributedTitle(NSAttributedString(string: "Text Area"), for: [])
+		textNode.attributedPlaceholderText = NSAttributedString(string: "Send button")
 		textNode.borderWidth = 1.0
 		textNode.borderColor = UIColor.black.cgColor
 		self.backgroundColor = .clear

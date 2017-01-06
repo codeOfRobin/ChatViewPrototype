@@ -10,6 +10,7 @@ import UIKit
 
 protocol MyCustomViewDelegate {
 	func centerChanged(center: CGPoint)
+	func frameChanged(frame: CGRect)
 }
 class MyCustomView: UIView{
 	
@@ -40,6 +41,10 @@ class MyCustomView: UIView{
 			}
 			
 			delegate?.centerChanged(center: center)
+			
+			if let frame = (object as? UIView)?.frame {
+				delegate?.frameChanged(frame: frame)
+			}
 			
 		} else {
 			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
