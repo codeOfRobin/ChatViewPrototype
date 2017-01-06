@@ -23,17 +23,17 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		return visualEffectView
 	}
 	
+	var height = CGFloat(44)
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubnode(node)
 		
 		node.addSubnode(tableNode)
-		textInputBar.textNode.maximumLinesToDisplay = 5
 	
-		
-		tableNode.style.preferredSize = CGSize(width: 300, height: 300)
+		tableNode.style.height = ASDimensionMakeWithFraction(1.0)
 		tableNode.style.width = ASDimensionMakeWithFraction(1.0)
-		tableNode.style.flexGrow = 1.0
+		
 		node.layoutSpecBlock = { size in
 			return ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .center, alignItems: .stretch, children: [self.tableNode])
 		}
@@ -46,12 +46,19 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		tableNode.view.keyboardDismissMode = .interactive
 		
 		NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: OperationQueue.main) { (notification) in
-//			let lastRow = IndexPath(row: self.tableNode.numberOfRows(inSection: 0) - 1, section: 0)
-//			self.tableNode.scrollToRow(at: lastRow, at: .top, animated: true)
 
 		}
 		
 		
+		let time = DispatchTime.now() + .seconds(4)
+		DispatchQueue.main.asyncAfter(deadline: time) { 
+			self.height *= 3
+			
+			self.resignFirstResponder()
+			self.reloadInputViews()
+			self.becomeFirstResponder()
+			
+		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +69,10 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 
 	override func viewDidLayoutSubviews() {
 		node.frame = view.frame
+		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
+			return
+		}
+		textInputBar.frame = blurView.bounds
 	}
 	
 	override var inputAccessoryView: UIView? {
@@ -70,9 +81,10 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 			return nil
 		}
 		
-		backgroundNode.view.frame.size = CGSize(width: view.frame.width, height: 44)
+		backgroundNode.frame.size = CGSize(width: view.frame.width, height: height)
+		print(backgroundNode.frame)
 		blurView.contentView.addSubnode(textInputBar)
-		textInputBar.frame = blurView.contentView.bounds
+		
 		return backgroundNode.view
 	}
 	
