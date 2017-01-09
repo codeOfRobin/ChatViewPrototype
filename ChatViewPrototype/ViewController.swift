@@ -9,7 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class ViewController: UIViewController, MyCustomViewDelegate {
+class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNodeDelegate {
 
 	let node = ASDisplayNode()
 	let tableNode = ASTableNode()
@@ -27,10 +27,10 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		tableNode.style.height = ASDimensionMakeWithFraction(1.0)
 		tableNode.style.width = ASDimensionMakeWithFraction(1.0)
 		
+		
 		node.layoutSpecBlock = { size in
 			return ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .center, alignItems: .stretch, children: [self.tableNode])
 		}
-		
 		
 		tableNode.dataSource = manager
 		tableNode.delegate = manager
@@ -43,7 +43,7 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		}
 		
 		
-		let time = DispatchTime.now() + .seconds(4)
+		let time = DispatchTime.now() + .seconds(1)
 		DispatchQueue.main.asyncAfter(deadline: time) { 
 			self.height *= 3
 			self.reloadInputViews()
@@ -60,20 +60,36 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		node.frame = view.frame
 	}
 	
+	func editableTextNodeDidBeginEditing(_ editableTextNode: ASEditableTextNode) {
+		print("")
+	}
+	
 	override var inputAccessoryView: UIView? {
 		
 		let backgroundNode = ASDisplayNode { () -> UIView in
 			let effect = UIBlurEffect(style: .extraLight)
 			let visualEffectView = UIVisualEffectView(effect: effect)
+			
+			let vibrancyEffect = UIVibrancyEffect(blurEffect: effect)
+			let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+			let white = UIView()
+			white.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+			white.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			
+			
+			vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			visualEffectView.contentView.addSubview(vibrancyView)
+			visualEffectView.contentView.addSubview(white)
 			return visualEffectView
 		}
-		
+			
 		
 		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
 			return nil
 		}
 		
 		let textInputBar = TextBarNode()
+		textInputBar.textNode.delegate = self
 		
 		backgroundNode.frame.size = CGSize(width: view.frame.width, height: height)
 		print(backgroundNode.frame)

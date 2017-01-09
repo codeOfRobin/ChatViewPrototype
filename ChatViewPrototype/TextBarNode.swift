@@ -21,14 +21,22 @@ class TextBarNode: ASDisplayNode {
 		self.addSubnode(sendButton)
 		
 		sendButton.setAttributedTitle(NSAttributedString(string: "Send button"), for: [])
-		textNode.attributedPlaceholderText = NSAttributedString(string: "Text Area")
-		textNode.borderWidth = 1.0
-		textNode.borderColor = UIColor.black.cgColor
+		textNode.attributedPlaceholderText = NSAttributedString(string: "iMessage", attributes: TextBarStyles.sharedBarStyles.placeholderAttrs)
+		textNode.borderWidth = 0.5
+		textNode.borderColor = TextBarStyles.sharedBarStyles.inputBorderColor.cgColor
+		textNode.backgroundColor = TextBarStyles.sharedBarStyles.inputBGColor
+		textNode.clipsToBounds = true
 		self.backgroundColor = .clear
+		textNode.style.flexGrow = 1.0
+		
+		textNode.textContainerInset = UIEdgeInsets(top: 9, left: 12, bottom: 8, right: 37)
+		
+		textNode.style.height = ASDimensionMake(35)
+		textNode.layer.cornerRadius = 17.0
 		
 	}
 	
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .center, alignItems: .center, children: [textNode, sendButton])
+		return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .spaceBetween, alignItems: .center, children: [textNode, sendButton])
 	}
 }

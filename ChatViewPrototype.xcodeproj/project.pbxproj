@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421D43B51E22BF2900F13ECB /* TextBarStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421D43B41E22BF2900F13ECB /* TextBarStyles.swift */; };
 		42CF7C6F1E1EE17E00136A53 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF7C6E1E1EE17E00136A53 /* KeyboardHelper.swift */; };
 		42D757E01E1D437C00C456FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D757DF1E1D437C00C456FE /* AppDelegate.swift */; };
 		42D757E21E1D437C00C456FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D757E11E1D437C00C456FE /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		30695762A4E7319F54CE7AB9 /* Pods_ChatViewPrototypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatViewPrototypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		350C5294455E87C7E3F2A72C /* Pods-ChatViewPrototypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatViewPrototypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatViewPrototypeTests/Pods-ChatViewPrototypeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		389DFE7EAEF4157A342A32B3 /* Pods-ChatViewPrototypeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatViewPrototypeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatViewPrototypeTests/Pods-ChatViewPrototypeTests.release.xcconfig"; sourceTree = "<group>"; };
+		421D43B41E22BF2900F13ECB /* TextBarStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBarStyles.swift; sourceTree = "<group>"; };
 		42CF7C6E1E1EE17E00136A53 /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		42D757DC1E1D437C00C456FE /* ChatViewPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatViewPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D757DF1E1D437C00C456FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				42E6D4E31E1FCE8800F465FE /* Keyboard.swift */,
 				42D7580F1E1E3A7C00C456FE /* TextBarNode.swift */,
+				421D43B41E22BF2900F13ECB /* TextBarStyles.swift */,
 				42D7580D1E1E04C500C456FE /* ChatTableManager.swift */,
 				42D757DF1E1D437C00C456FE /* AppDelegate.swift */,
 				42D757E11E1D437C00C456FE /* ViewController.swift */,
@@ -459,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				421D43B51E22BF2900F13ECB /* TextBarStyles.swift in Sources */,
 				42D757E21E1D437C00C456FE /* ViewController.swift in Sources */,
 				42E6D4E41E1FCE8800F465FE /* Keyboard.swift in Sources */,
 				42D758101E1E3A7C00C456FE /* TextBarNode.swift in Sources */,
