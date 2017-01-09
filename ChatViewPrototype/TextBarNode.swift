@@ -22,6 +22,7 @@ class TextBarNode: ASDisplayNode {
 		
 		sendButton.setAttributedTitle(NSAttributedString(string: "Send button"), for: [])
 		textNode.attributedPlaceholderText = NSAttributedString(string: "iMessage", attributes: TextBarStyles.sharedBarStyles.placeholderAttrs)
+		textNode.typingAttributes = TextBarStyles.sharedBarStyles.textAttrs
 		textNode.borderWidth = 0.5
 		textNode.borderColor = TextBarStyles.sharedBarStyles.inputBorderColor.cgColor
 		textNode.backgroundColor = TextBarStyles.sharedBarStyles.inputBGColor

@@ -15,7 +15,7 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 	let tableNode = ASTableNode()
 	let manager = ChatTableManager()
 	
-	
+	var accessoryView = UIView()
 	var height = CGFloat(44)
 	
 	override func viewDidLoad() {
@@ -45,8 +45,8 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 		
 		let time = DispatchTime.now() + .seconds(1)
 		DispatchQueue.main.asyncAfter(deadline: time) { 
-			self.height *= 3
-			self.reloadInputViews()
+//			self.accessoryView.frame = .zero
+
 		}
 	}
 	
@@ -61,7 +61,13 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 	}
 	
 	func editableTextNodeDidBeginEditing(_ editableTextNode: ASEditableTextNode) {
-		print("")
+//		self.resignFirstResponder()
+//		editableTextNode.becomeFirstResponder()
+//		editableTextNode.textView.inputAccessoryView = accessoryView
+//		let deadline = DispatchTime.now() + .seconds(3)
+//		UIView.animate(withDuration: 0.5, delay: 3, options: [], animations: { 
+//			editableTextNode.textView.inputAccessoryView?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+//		}, completion: nil)
 	}
 	
 	override var inputAccessoryView: UIView? {
@@ -96,10 +102,12 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 		blurView.contentView.addSubnode(textInputBar)
 		
 		textInputBar.frame = blurView.bounds
+		accessoryView = backgroundNode.view
 		return backgroundNode.view
 	}
 	
 	func centerChanged(center: CGPoint) {
+		
 	}
 	
 	func frameChanged(frame: CGRect) {
