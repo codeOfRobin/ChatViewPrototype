@@ -15,8 +15,9 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 	let tableNode = ASTableNode()
 	let manager = ChatTableManager()
 	
-	
-	var height = CGFloat(44)
+	let textInputBar = TextBarNode()
+
+	var height = CGFloat(60)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -43,10 +44,11 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 		}
 		
 		
-		let time = DispatchTime.now() + .seconds(1)
+		let time = DispatchTime.now() + .seconds(3)
 		DispatchQueue.main.asyncAfter(deadline: time) { 
-			self.height *= 3
+			self.textInputBar.isHorizontal = false
 			self.reloadInputViews()
+			self.textInputBar.transitionLayout(withAnimation: true, shouldMeasureAsync: true, measurementCompletion: nil)
 		}
 	}
 	
@@ -88,7 +90,6 @@ class ViewController: UIViewController, MyCustomViewDelegate, ASEditableTextNode
 			return nil
 		}
 		
-		let textInputBar = TextBarNode()
 		textInputBar.textNode.delegate = self
 		
 		backgroundNode.frame.size = CGSize(width: view.frame.width, height: height)

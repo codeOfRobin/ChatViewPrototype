@@ -14,6 +14,8 @@ class TextBarNode: ASDisplayNode {
 	
 	let sendButton = ASButtonNode()
 	
+	var isHorizontal = true
+	
 	override init() {
 		super.init()
 		
@@ -34,9 +36,19 @@ class TextBarNode: ASDisplayNode {
 		textNode.style.height = ASDimensionMake(35)
 		textNode.layer.cornerRadius = 17.0
 		
+		
+		
 	}
 	
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .spaceBetween, alignItems: .center, children: [textNode, sendButton])
+		
+		var nodes: [ASLayoutElement] = []
+		if isHorizontal {
+			nodes = [textNode, sendButton]
+		} else {
+			nodes = [textNode]
+		}
+		print(nodes.count)
+		return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .spaceBetween, alignItems: .center, children: nodes)
 	}
 }
