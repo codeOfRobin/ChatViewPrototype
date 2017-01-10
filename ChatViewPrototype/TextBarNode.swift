@@ -20,11 +20,20 @@ class TextBarNode: ASDisplayNode {
 		self.addSubnode(textNode)
 		self.addSubnode(sendButton)
 		
-		sendButton.setAttributedTitle(NSAttributedString(string: "Text Area"), for: [])
-		textNode.attributedPlaceholderText = NSAttributedString(string: "Send button")
-		textNode.borderWidth = 1.0
-		textNode.borderColor = UIColor.black.cgColor
+		sendButton.setAttributedTitle(NSAttributedString(string: "Send button"), for: [])
+		textNode.attributedPlaceholderText = NSAttributedString(string: "iMessage", attributes: TextBarStyles.sharedBarStyles.placeholderAttrs)
+		textNode.typingAttributes = TextBarStyles.sharedBarStyles.textAttrs
+		textNode.borderWidth = 0.5
+		textNode.borderColor = TextBarStyles.sharedBarStyles.inputBorderColor.cgColor
+		textNode.backgroundColor = TextBarStyles.sharedBarStyles.inputBGColor
+		textNode.clipsToBounds = true
 		self.backgroundColor = .clear
+		textNode.style.flexGrow = 1.0
+		
+		textNode.textContainerInset = UIEdgeInsets(top: 9, left: 12, bottom: 8, right: 37)
+		
+		textNode.style.height = ASDimensionMake(35)
+		textNode.layer.cornerRadius = 17.0
 		
 	}
 	

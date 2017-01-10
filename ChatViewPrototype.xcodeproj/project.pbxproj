@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42B4176B1E24C6600064C951 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4176A1E24C6600064C951 /* TextStyles.swift */; };
 		42CF7C6F1E1EE17E00136A53 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF7C6E1E1EE17E00136A53 /* KeyboardHelper.swift */; };
 		42D757E01E1D437C00C456FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D757DF1E1D437C00C456FE /* AppDelegate.swift */; };
 		42D757E21E1D437C00C456FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D757E11E1D437C00C456FE /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		30695762A4E7319F54CE7AB9 /* Pods_ChatViewPrototypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatViewPrototypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		350C5294455E87C7E3F2A72C /* Pods-ChatViewPrototypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatViewPrototypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatViewPrototypeTests/Pods-ChatViewPrototypeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		389DFE7EAEF4157A342A32B3 /* Pods-ChatViewPrototypeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatViewPrototypeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatViewPrototypeTests/Pods-ChatViewPrototypeTests.release.xcconfig"; sourceTree = "<group>"; };
+		42B4176A1E24C6600064C951 /* TextStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		42CF7C6E1E1EE17E00136A53 /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		42D757DC1E1D437C00C456FE /* ChatViewPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatViewPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D757DF1E1D437C00C456FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				42D757DF1E1D437C00C456FE /* AppDelegate.swift */,
 				42D757E11E1D437C00C456FE /* ViewController.swift */,
 				42CF7C6E1E1EE17E00136A53 /* KeyboardHelper.swift */,
+				42B4176A1E24C6600064C951 /* TextStyles.swift */,
 				42D757E31E1D437C00C456FE /* Main.storyboard */,
 				42D757E61E1D437C00C456FE /* Assets.xcassets */,
 				42D757E81E1D437C00C456FE /* LaunchScreen.storyboard */,
@@ -456,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B4176B1E24C6600064C951 /* TextStyles.swift in Sources */,
 				42D757E21E1D437C00C456FE /* ViewController.swift in Sources */,
 				42D758101E1E3A7C00C456FE /* TextBarNode.swift in Sources */,
 				42D7580E1E1E04C500C456FE /* ChatTableManager.swift in Sources */,

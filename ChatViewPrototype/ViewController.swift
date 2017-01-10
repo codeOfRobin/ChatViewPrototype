@@ -19,7 +19,18 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	
 	let backgroundNode = ASDisplayNode { () -> UIView in
 		let effect = UIBlurEffect(style: .extraLight)
+		let vibrancyEffect = UIVibrancyEffect(blurEffect: effect)
+		
 		let visualEffectView = UIVisualEffectView(effect: effect)
+		let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+		vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		
+		visualEffectView.contentView.addSubview(vibrancyView)
+		
+		let white = UIView()
+		white.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+		white.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		visualEffectView.contentView.addSubview(white)
 		return visualEffectView
 	}
 	

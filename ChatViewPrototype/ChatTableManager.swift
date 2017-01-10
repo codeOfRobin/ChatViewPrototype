@@ -23,6 +23,9 @@ class ChatTableManager: NSObject, ASTableDataSource, ASTableDelegate {
 	func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
 		return {
 			let node = ASTextCellNode()
+			if indexPath.row % 3 == 0 {
+				node.backgroundColor = UIColor(red:0.02, green:0.50, blue:1.00, alpha:1.00)
+			}
 			node.text = strings[indexPath.row]
 			return node
 		}()
