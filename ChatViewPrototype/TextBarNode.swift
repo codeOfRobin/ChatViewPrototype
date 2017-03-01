@@ -38,6 +38,9 @@ class TextBarNode: ASDisplayNode {
 	}
 	
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		return ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .center, alignItems: .center, children: [textNode, sendButton])
+		
+		let nodes: [ASLayoutElement] = [textNode]
+		let stack = ASStackLayoutSpec(direction: .horizontal, spacing: 0.0, justifyContent: .center, alignItems: .center, children: nodes)
+		return ASInsetLayoutSpec(insets: UIEdgeInsetsMake(2, 9, 2, 9), child: stack)
 	}
 }

@@ -57,17 +57,40 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 		tableNode.view.keyboardDismissMode = .interactive
 		
 		NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: OperationQueue.main) { (notification) in
-//			let lastRow = IndexPath(row: self.tableNode.numberOfRows(inSection: 0) - 1, section: 0)
-//			self.tableNode.scrollToRow(at: lastRow, at: .top, animated: true)
+			let lastRow = IndexPath(row: self.tableNode.numberOfRows(inSection: 0) - 1, section: 0)
+			self.tableNode.scrollToRow(at: lastRow, at: .top, animated: true)
 
 		}
 		
+		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
+			return
+		}
+
+		backgroundNode.view.frame.size = CGSize(width: view.frame.width, height: 44 + 4)
+		blurView.contentView.addSubnode(textInputBar)
+		textInputBar.frame = blurView.contentView.bounds
+		view.addSubnode(backgroundNode)
+		
+		
+//		let deadline = DispatchTime.now() + .seconds(3)
+//		DispatchQueue.main.asyncAfter(deadline: deadline) { 
+////			self.textInputBar.isShowingSendButton = false
+////			self.textInputBar.transitionLayout(withAnimation: true, shouldMeasureAsync: true, measurementCompletion: nil)
+//			UIView.animate(withDuration: 2, delay: 3, options: [], animations: {
+//				guard let blurView = (self.backgroundNode.view as? UIVisualEffectView) else {
+//					return
+//				}
+//				self.backgroundNode.frame = CGRect(x: 0, y: -300, width: self.view.frame.width, height: 200)
+//				self.textInputBar.frame = blurView.contentView.bounds
+//			}, completion: nil)
+//		}
 		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		self.becomeFirstResponder()
+		backgroundNode.addObserver(self, forKeyPath: "frame", options: [], context: nil)
 
 	}
 
@@ -77,22 +100,24 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	
 	override var inputAccessoryView: UIView? {
 		
-		guard let blurView = (backgroundNode.view as? UIVisualEffectView) else {
-			return nil
-		}
-		
-		backgroundNode.view.frame.size = CGSize(width: view.frame.width, height: 44)
-		blurView.contentView.addSubnode(textInputBar)
-		textInputBar.frame = blurView.contentView.bounds
-		return backgroundNode.view
+		let view = MyCustomView(frame: .zero)
+		view.delegate = self
+		return view
 	}
 	
 	func centerChanged(center: CGPoint) {
+		
 	}
 	
 	func frameChanged(frame: CGRect) {
 		node.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: frame.origin.y)
+		print(node.frame)
 		node.layout()
+		backgroundNode.frame = CGRect(x: 0, y: frame.minY - 48, width: view.frame.width, height: 48)
+	}
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		print(backgroundNode.view.frame)
 	}
 	
 	override var canBecomeFirstResponder: Bool {
