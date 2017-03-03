@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class TextBarNode: ASDisplayNode {
+class TextBarNode: ASDisplayNode, ASEditableTextNodeDelegate {
 	
 	let textNode = ASEditableTextNode()
 	
@@ -33,10 +33,13 @@ class TextBarNode: ASDisplayNode {
 		
 		textNode.textContainerInset = UIEdgeInsets(top: 9, left: 12, bottom: 8, right: 37)
 		
+		textNode.delegate = self
+		
 		textNode.style.height = ASDimensionMake(35)
 		textNode.layer.cornerRadius = 17.0
 		
 	}
+	
 	
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
 		
