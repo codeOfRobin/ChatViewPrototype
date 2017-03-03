@@ -20,7 +20,8 @@ class TextBarNode: ASDisplayNode {
 		self.addSubnode(textNode)
 		self.addSubnode(sendButton)
 		
-		sendButton.setAttributedTitle(NSAttributedString(string: "Send button"), for: [])
+		sendButton.setAttributedTitle(NSAttributedString(string: ""), for: [])
+		sendButton.backgroundColor = .blue
 		textNode.attributedPlaceholderText = NSAttributedString(string: "iMessage", attributes: TextBarStyles.sharedBarStyles.placeholderAttrs)
 		textNode.typingAttributes = TextBarStyles.sharedBarStyles.textAttrs
 		textNode.borderWidth = 0.5

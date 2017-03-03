@@ -99,7 +99,6 @@ class ViewController: UIViewController, MyCustomViewDelegate {
 	}
 	
 	override var inputAccessoryView: UIView? {
-		
 		let view = MyCustomView(frame: .zero)
 		view.delegate = self
 		return view
